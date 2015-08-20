@@ -4,13 +4,6 @@
 
 def rovarspraket(phrase):
 
-	#store the consonants to change
-	consonant_dict = {}
-	consonants = [c for c in "bcdfghjklmnpqrstvwxyz"]
-
-	for char in consonants:
-		consonant_dict[char] = None
-
 	#split the phrase into individual letters
 	split_words = [c for c in phrase]
 	new_phrase = ""
@@ -18,7 +11,13 @@ def rovarspraket(phrase):
 	#for each letter, add it doubled + o if it's a consonant
 	for letter in split_words:
 
-		if letter.lower() in consonant_dict:
+		#checks ASCII values to see if there's a consonant
+		if (ord('a') < ord(letter.lower()) < ord('e')
+			or ord('e') < ord(letter.lower()) < ord('i')
+			or ord('i') < ord(letter.lower()) < ord('o')
+			or ord('o') < ord(letter.lower()) < ord('u')
+			or ord('u') < ord(letter.lower())):
+
 			new_phrase += letter + "o" + letter.lower()
 
 		else:
