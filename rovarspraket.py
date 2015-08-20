@@ -4,21 +4,12 @@
 
 def rovarspraket(phrase):
 
-	#store the vowels and spaces so they won't be changed
-	ignore_chars = {
-		"a":None,
-		"e":None,
-		"i":None,
-		"o":None,
-		"u":None,
-		" ":None,
-		".":None,
-		",":None,
-		"?":None,
-		"!":None,
-		"(":None,
-		")":None
-	}
+	#store the consonants to change
+	consonant_dict = {}
+	consonants = [c for c in "bcdfghjklmnpqrstvwxyz"]
+
+	for char in consonants:
+		consonant_dict[char] = None
 
 	#split the phrase into individual letters
 	split_words = [c for c in phrase]
@@ -27,7 +18,7 @@ def rovarspraket(phrase):
 	#for each letter, add it doubled + o if it's a consonant
 	for letter in split_words:
 
-		if not ignore_chars.has_key(letter):
+		if letter.lower() in consonant_dict:
 			new_phrase += letter + "o" + letter.lower()
 
 		else:
@@ -36,5 +27,5 @@ def rovarspraket(phrase):
 	return new_phrase
 
 #Test cases
-phrase = "Hello David!"
+phrase = "Hello there, what do you think of this language??? Yay!"
 print rovarspraket(phrase)
